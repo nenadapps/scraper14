@@ -121,18 +121,12 @@ def get_details(url):
         stamp['raw_text'] = None
         
     try:
-        parts = html.select('span.desc')[0].get_text().split("\r\n")
-        for part in parts:
-            if 'SG' in part and ' ' not in part:
-                stamp['SG'] = part
-                break
-            if 'Set of' in part:
-                stamp['set'] = part
-                break
+    	temp = stamp['title'].split(' ')
+    	stamp['SG']=temp[0]
+    	stamp['face_value'] = temp[1]
     except:
-        stamp['SG'] = None
-        stamp['set'] = None
-
+    	stamp['SG']=None
+    	stamp['face_value'] = None
     stamp['currency'] = 'GBP'
     
     # image_urls should be a list
